@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="header">
+  <button mat-icon-button (click)="onOpen()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1>Identity Management Solution</h1>
+  <span style="flex: auto"></span>
+  <button mat-button [matMenuTriggerFor]=menu>Settings</button>
+  <mat-menu #menu="matMenu">
+    <a href="#" mat-menu-item>Desktop</a>    
+    <a href="#" mat-menu-item>Admin</a>
+    <a href="#" mat-menu-item>Log out</a>
+  </mat-menu>
+</mat-toolbar>

@@ -6,6 +6,9 @@ import { MyqueueComponent } from './myqueue.component';
   imports: [
     CommonModule
   ],
+  exports: [
+    MyqueueComponent
+  ],
   declarations: [MyqueueComponent]
 })
 export class MyqueueModule { }
