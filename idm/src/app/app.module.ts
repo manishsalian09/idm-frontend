@@ -12,7 +12,6 @@ import {
   MatMenuModule,
   MatIconModule
 } from '@angular/material';
-import { RoutingModule } from './routing/routing.module';
 import { MyqueueModule } from './myqueue/myqueue.module';
 import { Routes, RouterModule } from '@angular/router';
 import { MyqueueComponent } from './myqueue/myqueue.component';
@@ -33,7 +32,6 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    RoutingModule,
     MyqueueModule,
     BrowserAnimationsModule,
     MatSidenavModule,
