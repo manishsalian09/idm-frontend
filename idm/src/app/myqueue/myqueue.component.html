@@ -1,3 +1,36 @@
-<p>
-  <data-table></data-table>
-</p>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <p matBadge="1" matBadgeSize="medium" matBadgePosition="after" matBadgeOverlap="false" matBadgeColor="accent"><b>Assignments</b></p>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <hr/>
+    <app-data-table 
+      title="Assignments Pending for Approval"
+      sorting="required" 
+      pagination="required" 
+      [export]="['xls', 'csv']"
+      print="required"
+      approve="required" 
+      reject="required"
+      [columns]="assignmentColumn">
+    </app-data-table>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+          <p matBadge="2" matBadgeSize="medium" matBadgePosition="after" matBadgeOverlap="false" matBadgeColor="accent"><b>Role</b></p>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <hr/>
+    <app-data-table 
+      title="Role Pending for Approval"
+      sorting="required" 
+      pagination="required" 
+      approve="required" 
+      reject="required"
+      [columns]="roleColumn">
+    </app-data-table>
+  </mat-expansion-panel>
+</mat-accordion>

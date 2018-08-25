@@ -18,10 +18,7 @@ import { MyqueueComponent } from './myqueue/myqueue.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
-  //{ path: 'create-role', component: CreateRoleComponent },
-  //{ path: 'modify-role', component: ModifyRoleComponent },
-  { path: 'myqueue', component: MyqueueComponent },
-  //{ path: 'new-assignment', component: CreateAssignmentComponent }
+  { path: 'myqueue', component: MyqueueComponent }
 ];
 
 @NgModule({
@@ -31,9 +28,9 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     MyqueueModule,
-    BrowserAnimationsModule,
     MatSidenavModule,
     MatDividerModule,
     MatListModule,
