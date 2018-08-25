@@ -8,8 +8,8 @@
     <hr/>
     <app-data-table 
       title="Assignments Pending for Approval"
-      sorting="required" 
-      pagination="required" 
+      [sorting]="required" 
+      [pagination]="required" 
       [export]="['xls', 'csv']"
       print="required"
       approve="required" 
@@ -26,8 +26,8 @@
     <hr/>
     <app-data-table 
       title="Role Pending for Approval"
-      sorting="required" 
-      pagination="required" 
+      [sorting]="required" 
+      [pagination]="required" 
       approve="required" 
       reject="required"
       [columns]="roleColumn">

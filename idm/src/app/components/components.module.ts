@@ -7,7 +7,8 @@ import {
   MatMenuModule,
   MatCheckboxModule,
   MatTableModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatSortModule
 } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,14 +16,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
     ReactiveFormsModule,
     MatCheckboxModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     DataTableComponent
