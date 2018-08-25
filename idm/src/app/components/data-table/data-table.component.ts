@@ -7,7 +7,7 @@ import { SelectionModel } from '@angular/cdk/collections';
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.css']
 })
-export class DataTableComponent implements OnInit, AfterViewInit, OnChanges {
+export class DataTableComponent implements OnInit, AfterViewInit {
 
   private selection = new SelectionModel<any>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -25,6 +25,7 @@ export class DataTableComponent implements OnInit, AfterViewInit, OnChanges {
   @Output("rejectClick") rejectClick = new EventEmitter();
   
   constructor() { 
+    this.dataSource = new MatTableDataSource<any>();
   }
 
   ngOnInit() {
@@ -39,9 +40,6 @@ export class DataTableComponent implements OnInit, AfterViewInit, OnChanges {
       this.dataSource.sort = this.sort;
     }
 
-  }
-
-  ngOnChanges() {
   }
 
   isAllSelected() {

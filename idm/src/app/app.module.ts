@@ -15,6 +15,7 @@ import {
 import { MyqueueModule } from './myqueue/myqueue.module';
 import { Routes, RouterModule } from '@angular/router';
 import { MyqueueComponent } from './myqueue/myqueue.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    HttpClientModule,
     MyqueueModule,
     MatSidenavModule,
     MatDividerModule,
