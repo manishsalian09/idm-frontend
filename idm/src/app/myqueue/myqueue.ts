@@ -1,8 +1,9 @@
-export class RoleQueue {
+export class RoleApprover {
+    id: Number;
     roleId: Number;
     action: String;
-    roleName: String;
-    roleDescription: String;
+    name: String;
+    description: String;
     createdOn: String;
     createdBy: String;
     modifiedOn: String;
