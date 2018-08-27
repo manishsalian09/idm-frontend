@@ -33,7 +33,7 @@ export class MyqueueComponent implements OnInit {
     this.loadRoleQueue();
   }
 
-  loadRoleQueue() {
+  loadRoleQueue(): void {
     this.myqueueService.loadRoleQueue().subscribe((data: RoleApprover[]) => {
       this.dataSource2.data = data;
     });
