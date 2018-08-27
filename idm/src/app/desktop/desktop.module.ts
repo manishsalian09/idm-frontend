@@ -11,12 +11,12 @@ import { MatDividerModule, MatListModule, MatSidenavModule, MatToolbarModule, Ma
 import { HeaderComponent } from '../header/header.component';
 
 const routes: Routes = [
-  { path: 'myqueue', component: MyqueueComponent },
+  { path: 'myqueue', pathMatch: 'full' , component: MyqueueComponent },
   {
     path: 'role',
     children: [
-      { path: 'create', component: RoleComponent },
-      { path: 'modify', component: RoleComponent }
+      { path: 'create', pathMatch: 'full', component: RoleComponent },
+      { path: 'modify', pathMatch: 'full', component: RoleComponent }
     ]
   }
 ];

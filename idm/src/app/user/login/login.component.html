@@ -1,5 +1,16 @@
-<p>
-  login works!
-  <a routerLink="/desktop">Create Role</a>
-  <router-outlet></router-outlet>
-</p>
+<div class="login-content">
+  <mat-card>
+    <mat-card-content>
+      <h4>Login</h4>
+      <form name="login-form" [formGroup]="loginFormGroup">
+        <mat-form-field class="input-box">
+          <input name="employeeId" matInput placeholder="Employee ID" formControlName="employeeId" required />
+        </mat-form-field>
+        <mat-form-field class="input-box">
+          <input name="password" matInput placeholder="Password" formControlName="password" required />
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="button" (click)="onSubmit()" >Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

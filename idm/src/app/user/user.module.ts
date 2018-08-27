@@ -1,24 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
-import { Routes, RouterModule } from '@angular/router';
-import { DesktopComponent } from '../desktop/desktop.component';
-import { DesktopModule } from '../desktop/desktop.module';
-
-const routes: Routes = [
-  { path: 'desktop', component: DesktopComponent }
-];
+import { MatInputModule, MatButtonModule, MatCardModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    DesktopModule,
-    RouterModule.forChild(routes)
-    
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule
   ],
   exports: [
-    LoginComponent,
-    RouterModule
+    LoginComponent
   ],
   declarations: [LoginComponent]
 })

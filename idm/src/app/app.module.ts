@@ -6,11 +6,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserModule } from './user/user.module';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './user/login/login.component';
+import { DesktopComponent } from './desktop/desktop.component';
+import { DesktopModule } from './desktop/desktop.module';
+import { AuthGuard } from './user/login/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' }
-  /* ,
-  { path: "**", redirectTo: '' } */
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'desktop', component: DesktopComponent, canActivate: [AuthGuard] },
+  { path: "**", redirectTo: '' }
 ];
 
 @NgModule({
@@ -20,6 +24,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    DesktopModule,
     UserModule,
     RouterModule.forRoot(routes, { enableTracing: true })
   ],
