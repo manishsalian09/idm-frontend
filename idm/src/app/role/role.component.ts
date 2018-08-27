@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-role',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoleComponent implements OnInit {
 
-  constructor() { }
+  roleFormGroup: FormGroup;
+  users$: Observable<any[]>;
+  
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.roleFormGroup = this._formBuilder.group({
+      roleName: ['', Validators.required],
+      roleOwner: ['', Validators.required],
+      roleDescription: ['', Validators.required],
+      selectUser: ''
+    });
   }
 
+  onSubmit(roleStepperRef) {
+
+  }
 }

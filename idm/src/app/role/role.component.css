@@ -1,0 +1,16 @@
+.stepper-button {
+    margin-top: 1rem;
+}
+
+.stepper {
+    width: 800px;
+    background: #fafafa;
+}
+
+.mat-option {
+    height: 30px;
+}
+
+.input-box {
+    width: 70%;
+}

@@ -16,10 +16,13 @@ import { MyqueueModule } from './myqueue/myqueue.module';
 import { Routes, RouterModule } from '@angular/router';
 import { MyqueueComponent } from './myqueue/myqueue.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RoleComponent } from './role/role.component';
+import { RoleModule } from './role/role.module';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: 'myqueue', component: MyqueueComponent }
+  { path: 'myqueue', component: MyqueueComponent },
+  { path: 'create-role', component: RoleComponent}
 ];
 
 @NgModule({
@@ -33,6 +36,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     MyqueueModule,
+    RoleModule,
     MatSidenavModule,
     MatDividerModule,
     MatListModule,
