@@ -1,14 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserComponent } from './user.component';
+import { LoginComponent } from './login/login.component';
+import { Routes, RouterModule } from '@angular/router';
+import { DesktopComponent } from '../desktop/desktop.component';
+import { DesktopModule } from '../desktop/desktop.module';
+
+const routes: Routes = [
+  { path: 'desktop', component: DesktopComponent }
+];
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    DesktopModule,
+    RouterModule.forChild(routes)
+    
   ],
   exports: [
-    UserComponent
+    LoginComponent,
+    RouterModule
   ],
-  declarations: [UserComponent]
+  declarations: [LoginComponent]
 })
 export class UserModule { }

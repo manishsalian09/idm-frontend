@@ -2,54 +2,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { 
-  MatSidenavModule, 
-  MatDividerModule, 
-  MatListModule, 
-  MatToolbarModule,
-  MatMenuModule,
-  MatIconModule
-} from '@angular/material';
-import { MyqueueModule } from './myqueue/myqueue.module';
-import { Routes, RouterModule } from '@angular/router';
-import { MyqueueComponent } from './myqueue/myqueue.component';
-import { HttpClientModule } from '@angular/common/http';
-import { RoleComponent } from './role/role.component';
-import { RoleModule } from './role/role.module';
+import { UserModule } from './user/user.module';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './user/login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: 'myqueue', component: MyqueueComponent },
-  {
-    path: 'role',
-    children: [
-      { path: 'create', component: RoleComponent },
-      { path: 'modify', component: RoleComponent}
-    ]
-  },
-  { path: "**", redirectTo: ''}
+  { path: '', redirectTo: '/', pathMatch: 'full' }
+  /* ,
+  { path: "**", redirectTo: '' } */
 ];
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes),
-    HttpClientModule,
-    MyqueueModule,
-    RoleModule,
-    MatSidenavModule,
-    MatDividerModule,
-    MatListModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatIconModule
+    UserModule,
+    RouterModule.forRoot(routes, { enableTracing: true })
   ],
   providers: [],
   bootstrap: [AppComponent]
