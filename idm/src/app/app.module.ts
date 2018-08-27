@@ -22,7 +22,14 @@ import { RoleModule } from './role/role.module';
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'myqueue', component: MyqueueComponent },
-  { path: 'create-role', component: RoleComponent}
+  {
+    path: 'role',
+    children: [
+      { path: 'create', component: RoleComponent },
+      { path: 'modify', component: RoleComponent}
+    ]
+  },
+  { path: "**", redirectTo: ''}
 ];
 
 @NgModule({
