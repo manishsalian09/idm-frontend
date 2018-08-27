@@ -23,7 +23,7 @@
         <mat-form-field  class="input-box">
           <input type="text" #selectUser (keyup)="search(selectUser.value)" placeholder="User Name" aria-label="userName" matInput  [matAutocomplete]="auto" formControlName="selectUser">
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let user of users$ | async" [value]="user.employeeId">
+            <mat-option *ngFor="let user of users$ | async" [value]="user.employeeId" (click)="onSelect(user)">
               {{ user.employeeId }} ({{user.firstName}})
             </mat-option>
           </mat-autocomplete>
@@ -31,7 +31,8 @@
         <app-data-table
           title="Approvers"
           pagination="required" 
-          [columns]="userColumn">
+          [columns]="userColumn"
+          [datasource]="userDS">
         </app-data-table>
       </div>
       <div  class="stepper-button">

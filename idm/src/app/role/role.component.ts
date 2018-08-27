@@ -5,6 +5,7 @@ import { RoleService } from './role.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-role',
@@ -16,12 +17,15 @@ export class RoleComponent implements OnInit {
   roleFormGroup: FormGroup;
   users$: Observable<User[]>;
   private searchTerm = new Subject<string>();
+  userDS: MatTableDataSource<any>;
 
   userColumn: string[] = [
     'employeeId', 'userName'
   ];
   
-  constructor(private _formBuilder: FormBuilder, private roleService: RoleService, private userService: UserService) { }
+  constructor(private _formBuilder: FormBuilder, private roleService: RoleService, private userService: UserService) { 
+    this.userDS = new MatTableDataSource<any>();
+  }
 
   ngOnInit() {
     this.roleFormGroup = this._formBuilder.group({
@@ -45,5 +49,20 @@ export class RoleComponent implements OnInit {
 
   onSubmit(roleStepperRef) {
 
+  }
+
+  approverData: any[] = [];
+  onSelect(user: User) {
+    let count = this.approverData.filter(vo => (vo.employeeId===user.employeeId)).length;
+    
+    if (count == 0) {
+      this.approverData.push({
+        employeeId: user.employeeId,
+        userName: user.firstName
+      });
+      this.userDS.data = this.approverData
+    }
+
+    this.roleFormGroup.controls.selectUser.reset();
   }
 }
