@@ -14,39 +14,46 @@
         </mat-form-field>
       </div>
       <div class="stepper-button">
-        <button mat-button matStepperNext type="button">Next</button>
+        <button mat-raised-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step [stepControl]="roleFormGroup">
       <ng-template matStepLabel>Approvers</ng-template>
-      <mat-form-field  class="input-box">
-        <input type="text" #selectUser (keyup)="search(selectUser.value)" placeholder="User Name" aria-label="userName" matInput  [matAutocomplete]="auto" formControlName="selectUser">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let user of users$ | async" [value]="user.employeeId">
-            {{ user.employeeId }} ({{user.firstName}})
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+      <div style="margin-left: 30px; width: 100%">
+        <mat-form-field  class="input-box">
+          <input type="text" #selectUser (keyup)="search(selectUser.value)" placeholder="User Name" aria-label="userName" matInput  [matAutocomplete]="auto" formControlName="selectUser">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let user of users$ | async" [value]="user.employeeId">
+              {{ user.employeeId }} ({{user.firstName}})
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <app-data-table
+          title="Approvers"
+          pagination="required" 
+          [columns]="userColumn">
+        </app-data-table>
+      </div>
       <div  class="stepper-button">
-        <button mat-button matStepperPrevious type="button">Previous</button>
-        <button mat-button matStepperNext type="button">Next</button>
+        <button mat-raised-button matStepperPrevious type="button">Previous</button>
+        <button mat-raised-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Assigned User</ng-template>
       <!-- table -->          
       <div  class="stepper-button">
-        <button mat-button matStepperPrevious type="button">Previous</button>
-        <button mat-button matStepperNext type="button">Next</button>
+        <button mat-raised-button matStepperPrevious type="button">Previous</button>
+        <button mat-raised-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
       You are now done
       <div class="stepper-button">
-        <button mat-button matStepperPrevious type="button">Previous</button>
-        <button mat-button matStepperNext type="button" (click)="onSubmit(roleStepper)">Submit</button>
-        <button mat-button (click)="roleStepper.reset()" type="reset">Reset</button>
+        <button mat-raised-button matStepperPrevious type="button">Previous</button>
+        <button mat-raised-button matStepperNext type="button" (click)="onSubmit(roleStepper)">Submit</button>
+        <button mat-raised-button (click)="roleStepper.reset()" type="reset">Reset</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>
