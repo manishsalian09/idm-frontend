@@ -9,14 +9,19 @@ import { MyqueueModule } from '../myqueue/myqueue.module';
 import { RoleModule } from '../role/role.module';
 import { MatDividerModule, MatListModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule } from '@angular/material';
 import { HeaderComponent } from '../header/header.component';
+import { AuthGuard } from '../user/login/auth.guard';
 
 const routes: Routes = [
-  { path: 'myqueue', pathMatch: 'full' , component: MyqueueComponent },
-  {
-    path: 'role',
-    children: [
-      { path: 'create', pathMatch: 'full', component: RoleComponent },
-      { path: 'modify', pathMatch: 'full', component: RoleComponent }
+  { path: 'desktop', component: DesktopComponent, canActivate: [AuthGuard],
+    children : [  
+      { path: 'myqueue', component: MyqueueComponent },
+      {
+        path: 'role',
+        children: [
+          { path: 'create', component: RoleComponent },
+          { path: 'modify', component: RoleComponent }
+        ]
+      }
     ]
   }
 ];

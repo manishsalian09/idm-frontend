@@ -11,10 +11,9 @@ import { DesktopModule } from './desktop/desktop.module';
 import { AuthGuard } from './user/login/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', pathMatch: 'full', redirectTo: 'desktop' },
   { path: 'login', component: LoginComponent },
-  { path: 'desktop', component: DesktopComponent, canActivate: [AuthGuard] },
-  { path: "**", redirectTo: '' }
+  { path: "**", redirectTo: 'desktop' }
 ];
 
 @NgModule({
@@ -24,9 +23,9 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    DesktopModule,
+    RouterModule.forRoot(routes),
     UserModule,
-    RouterModule.forRoot(routes)
+    DesktopModule
   ],
   providers: [],
   bootstrap: [AppComponent]
