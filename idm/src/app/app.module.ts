@@ -26,7 +26,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     DesktopModule,
     UserModule,
-    RouterModule.forRoot(routes, { enableTracing: true })
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
