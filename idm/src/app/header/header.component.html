@@ -6,8 +6,8 @@
   <span style="flex: auto"></span>
   <button mat-button [matMenuTriggerFor]=menu>Settings</button>
   <mat-menu #menu="matMenu">
-    <a href="#" mat-menu-item>Desktop</a>    
-    <a href="#" mat-menu-item>Admin</a>
-    <a href="#" mat-menu-item>Log out</a>
+    <a href="#" mat-menu-item routerLink="/desktop">Desktop</a>    
+    <a href="#" mat-menu-item routerLink="/desktop">Admin</a>
+    <a href="#" mat-menu-item (click)="logout()">Log out</a>
   </mat-menu>
 </mat-toolbar>

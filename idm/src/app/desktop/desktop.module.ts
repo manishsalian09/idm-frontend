@@ -9,7 +9,7 @@ import { MyqueueModule } from '../myqueue/myqueue.module';
 import { RoleModule } from '../role/role.module';
 import { MatDividerModule, MatListModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatIconModule } from '@angular/material';
 import { HeaderComponent } from '../header/header.component';
-import { AuthGuard } from '../user/login/auth.guard';
+import { AuthGuard } from '../user/auth/auth.guard';
 
 const routes: Routes = [
   { path: 'desktop', component: DesktopComponent, canActivate: [AuthGuard],

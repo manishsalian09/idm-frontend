@@ -20,7 +20,9 @@ export class AuthService {
   }
 
   logout() {
-    this.isLoggedin = false;
-    this.router.navigate(['/login']);
+    if (this.isLoggedin === true) {
+      this.isLoggedin = false;
+      this.router.navigate(['/login']);
+    }
   }
 }

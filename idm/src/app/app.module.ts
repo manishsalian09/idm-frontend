@@ -5,14 +5,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserModule } from './user/user.module';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './user/login/login.component';
-import { DesktopComponent } from './desktop/desktop.component';
 import { DesktopModule } from './desktop/desktop.module';
-import { AuthGuard } from './user/login/auth.guard';
+import { AuthComponent } from './user/auth/auth.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'desktop' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: AuthComponent },
   { path: "**", redirectTo: 'desktop' }
 ];
 

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
 import { MatInputModule, MatButtonModule, MatCardModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   imports: [
@@ -13,8 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule
   ],
   exports: [
-    LoginComponent
+    AuthComponent
   ],
-  declarations: [LoginComponent]
+  declarations: [AuthComponent]
 })
 export class UserModule { }
