@@ -14,16 +14,13 @@ export class AuthService {
   constructor(private router: Router, private http: HttpClient, private token: TokenService) { }
 
   login(employeeId: string, password: string) {
-    console.log(employeeId);
-    
     this.authenticate(employeeId, password).subscribe(data => {
-      this.token.saveToken(data.token);  
+      if (data.token != null) {
+        this.token.saveToken(data.token); 
+        this.isLoggedin = true;
+        this.router.navigate(['/desktop']) 
+      }
     });
-
-    if (employeeId === 'supervisor' && password === 'supervisor') {
-      this.isLoggedin = true;
-      this.router.navigate(['/desktop'])
-    }
   }
 
   logout() {
@@ -34,8 +31,7 @@ export class AuthService {
   }
 
   authenticate(employeeId: string, password: string): Observable<any> {
-    const credentials = {username: employeeId, password: password};
-    console.log('attempAuth ::');
-    return this.http.post('http://localhost:8080/token/generate-token', credentials);
+    const credentials = {employeeId: employeeId, password: password};
+    return this.http.post('http://localhost:8080/api/v1/users/auth', credentials);
   }
 }

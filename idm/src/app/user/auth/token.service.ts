@@ -10,13 +10,13 @@ export class TokenService {
   constructor() { }
 
   public logout() {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.clear();
+    sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.clear();
   }
 
   public saveToken(token: string) {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY,  token);
+    sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.setItem(TOKEN_KEY, token);
   }
 
   public getToken(): string {
