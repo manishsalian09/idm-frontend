@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../user/auth/auth.service';
+import { User } from '../user/user';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,17 @@ import { AuthService } from '../user/auth/auth.service';
 export class HeaderComponent implements OnInit {
 
   @Output() open = new EventEmitter<void>(); 
+  private user: User;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    if (this.authService.isLoggedin) {
+      this.authService.loggedInUser().subscribe(data => {
+        console.log(data);
+        this.user = data;
+      });
+    }
   }
 
   onOpen(): void {
