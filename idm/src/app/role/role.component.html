@@ -7,7 +7,12 @@
           <input name="rolename" matInput placeholder="Role Name" formControlName="roleName" required />
         </mat-form-field>
         <mat-form-field class="input-box">
-          <input name="roleOwner" matInput placeholder="Role Owner" formControlName="roleOwner" required />
+          <input #owner name="roleOwner" matInput placeholder="Role Owner" formControlName="roleOwner" required (keyup)="search(owner.value)" [matAutocomplete]="ownerauto" />
+          <mat-autocomplete #ownerauto="matAutocomplete">
+            <mat-option *ngFor="let user of users$ | async" [value]="user.employeeId" (click)="onOwnerSelect(user)">
+              {{ user.employeeId }} ({{user.firstName}})
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field> 
         <mat-form-field class="input-box">
           <textarea name="roleDescription" matInput placeholder="Role Description" formControlName="roleDescription" required></textarea>

@@ -21,6 +21,7 @@ export class RoleComponent implements OnInit {
   private searchTerm = new Subject<string>();
   private userDS: MatTableDataSource<any>;
   private approvers: any[] = [];
+  private owner: User;
 
   userColumn: string[] = [
     'id', 'employeeId', 'userName'
@@ -58,24 +59,20 @@ export class RoleComponent implements OnInit {
     role.name = this.roleFormGroup.controls.roleName.value;
     role.description = this.roleFormGroup.controls.roleDescription.value;
     role.owner = new User();
-    role.owner.id = this.roleFormGroup.controls.roleOwner.value;
-    role.action = 'Create';
-    role.active = 'N';
-    role.status = 'Pending';
+    role.owner = this.owner;
     this.approvers.forEach(approver => {
       let roleApprover = new RoleApprover();
-      roleApprover.status = 'Pending';
       roleApprover.user = new User();
       roleApprover.user.employeeId = approver.employeeId;
       roleApprover.user.id = approver.id;
       roleApprover.createdOn = Date.now();
-      roleApprover.createdBy = this.authService.employeeId;
       role.approvers.push(roleApprover);
     });
     this.roleService.create(role).subscribe(result => {
       console.log(result);
       this.userDS.data = [];
       this.approvers = [];
+      this.owner = null;
       roleStepperRef.reset();
     });
     
@@ -94,5 +91,10 @@ export class RoleComponent implements OnInit {
     }
 
     this.roleFormGroup.controls.selectUser.reset();
+  }
+
+  onOwnerSelect(user: User) {
+    this.owner = new User();
+    this.owner.id = user.id;
   }
 }
