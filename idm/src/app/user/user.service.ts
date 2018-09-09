@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from './user';
 import { map } from 'rxjs/operators';
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -48,4 +49,5 @@ export class UserService {
       })
     );
   }
+
 }

@@ -13,7 +13,7 @@ export class AuthService {
 
   private user$: Observable<User>;
   isLoggedin: boolean;
-  employeeId: String;
+  employeeId: string;
 
   constructor(private router: Router, 
     private http: HttpClient, 
@@ -34,6 +34,7 @@ export class AuthService {
   logout() {
     if (this.isLoggedin === true) {
       this.isLoggedin = false;
+      this.token.logout();
       this.router.navigate(['/login']);
     }
   }

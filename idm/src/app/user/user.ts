@@ -1,10 +1,10 @@
 export class User {
-    id: Number;
-    employeeId: String;
-    firstName: String;
-    middleName: String;
-    lastName: String;
-    active: String;
-    emailId: String;
-    manager: Number;
+    id: number;
+    employeeId: string;
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    active: string;
+    emailId: string;
+    manager: number;
 }

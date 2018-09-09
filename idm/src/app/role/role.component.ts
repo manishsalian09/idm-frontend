@@ -6,6 +6,8 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user';
 import { MatTableDataSource } from '@angular/material';
+import { Role, RoleApprover } from './role';
+import { AuthService } from '../user/auth/auth.service';
 
 @Component({
   selector: 'app-role',
@@ -14,17 +16,21 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class RoleComponent implements OnInit {
 
-  roleFormGroup: FormGroup;
-  users$: Observable<User[]>;
+  private roleFormGroup: FormGroup;
+  private users$: Observable<User[]>;
   private searchTerm = new Subject<string>();
-  userDS: MatTableDataSource<any>;
+  private userDS: MatTableDataSource<any>;
+  private approvers: any[] = [];
 
   userColumn: string[] = [
-    'employeeId', 'userName'
+    'id', 'employeeId', 'userName'
   ];
   
-  constructor(private _formBuilder: FormBuilder, private roleService: RoleService, private userService: UserService) { 
-    this.userDS = new MatTableDataSource<any>();
+  constructor(private _formBuilder: FormBuilder, 
+    private roleService: RoleService, 
+    private userService: UserService,
+    private authService: AuthService) { 
+      this.userDS = new MatTableDataSource<any>();
   }
 
   ngOnInit() {
@@ -48,19 +54,43 @@ export class RoleComponent implements OnInit {
   }
 
   onSubmit(roleStepperRef) {
-
+    let role = new Role();
+    role.name = this.roleFormGroup.controls.roleName.value;
+    role.description = this.roleFormGroup.controls.roleDescription.value;
+    role.owner = new User();
+    role.owner.id = this.roleFormGroup.controls.roleOwner.value;
+    role.action = 'Create';
+    role.active = 'N';
+    role.status = 'Pending';
+    this.approvers.forEach(approver => {
+      let roleApprover = new RoleApprover();
+      roleApprover.status = 'Pending';
+      roleApprover.user = new User();
+      roleApprover.user.employeeId = approver.employeeId;
+      roleApprover.user.id = approver.id;
+      roleApprover.createdOn = Date.now();
+      roleApprover.createdBy = this.authService.employeeId;
+      role.approvers.push(roleApprover);
+    });
+    this.roleService.create(role).subscribe(result => {
+      console.log(result);
+      this.userDS.data = [];
+      this.approvers = [];
+      roleStepperRef.reset();
+    });
+    
   }
 
-  approverData: any[] = [];
   onSelect(user: User) {
-    let count = this.approverData.filter(vo => (vo.employeeId===user.employeeId)).length;
+    let count = this.approvers.filter(vo => (vo.employeeId===user.employeeId)).length;
     
     if (count == 0) {
-      this.approverData.push({
+      this.approvers.push({
+        id: user.id,
         employeeId: user.employeeId,
         userName: user.firstName
       });
-      this.userDS.data = this.approverData
+      this.userDS.data = this.approvers
     }
 
     this.roleFormGroup.controls.selectUser.reset();

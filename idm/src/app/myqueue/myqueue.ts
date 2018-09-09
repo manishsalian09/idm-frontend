@@ -1,4 +1,4 @@
-export class RoleApprover {
+export class RoleApprover1 {
     id: Number;
     roleId: Number;
     action: String;
