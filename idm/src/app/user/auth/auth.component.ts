@@ -16,8 +16,8 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
 
     this.loginFormGroup = this._formBuilder.group({
-      employeeId: ['', Validators.required],
-      password: ['', Validators.required]
+      employeeId: [null, Validators.required],
+      password: [null, Validators.required]
     });
   }
 
