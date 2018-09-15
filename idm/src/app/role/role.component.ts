@@ -66,8 +66,15 @@ export class RoleComponent implements OnInit {
       roleApprover.user.employeeId = approver.employeeId;
       roleApprover.user.id = approver.id;
       roleApprover.createdOn = Date.now();
+      roleApprover.approvalType = 'User';
       role.approvers.push(roleApprover);
     });
+    let roleApprover = new RoleApprover();
+    roleApprover.user = new User();
+    roleApprover.user = role.owner;
+    roleApprover.createdOn = Date.now();
+    roleApprover.approvalType = 'Owner';
+    role.approvers.push(roleApprover);
     this.roleService.create(role).subscribe(result => {
       console.log(result);
       this.userDS.data = [];
@@ -81,7 +88,7 @@ export class RoleComponent implements OnInit {
   onSelect(user: User) {
     let count = this.approvers.filter(vo => (vo.employeeId===user.employeeId)).length;
     
-    if (count == 0) {
+    if (count == 0 && user.id != this.owner.id) {
       this.approvers.push({
         id: user.id,
         employeeId: user.employeeId,

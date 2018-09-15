@@ -20,4 +20,5 @@ export class RoleApprover {
     modifiedOn: number;
     modifiedBy: string;
     status: string;
+    approvalType: string;
 }

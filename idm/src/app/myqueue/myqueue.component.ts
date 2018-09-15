@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MyqueueService } from './myqueue.service';
-import { RoleApprover1 } from './myqueue';
+import { RoleQueue } from './myqueue';
 
 @Component({
   selector: 'app-myqueue',
@@ -12,13 +12,13 @@ import { RoleApprover1 } from './myqueue';
 export class MyqueueComponent implements OnInit {
 
   dataSource1: MatTableDataSource<any>;
-  dataSource2: MatTableDataSource<RoleApprover1>;
+  dataSource2: MatTableDataSource<RoleQueue>;
 
   assignmentColumn: string[] = [
     'select', 'assignmentId', 'action', 'userName', 'roleName', 'enabled', 'createdOn', 'createdBy', 'modifiedOn', 'modifiedBy', 'status'
   ];
   roleColumn: string[] = [
-    'select', 'action', 'name', 'description', 'createdOn', 'createdBy', 'modifiedOn', 'modifiedBy', 'status'
+    'select', 'action', 'name', 'description', 'approvalType', 'createdOn', 'createdBy', 'modifiedOn', 'modifiedBy', 'status'
   ];
 
   assignmentSelect = new SelectionModel<any>(true, []);
@@ -26,7 +26,7 @@ export class MyqueueComponent implements OnInit {
 
   constructor(private myqueueService: MyqueueService) {
     this.dataSource1 = new MatTableDataSource<any>();
-    this.dataSource2 = new MatTableDataSource<RoleApprover1>();
+    this.dataSource2 = new MatTableDataSource<RoleQueue>();
    }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class MyqueueComponent implements OnInit {
   }
 
   loadRoleQueue(): void {
-    this.myqueueService.loadRoleQueue().subscribe((data: RoleApprover1[]) => {
+    this.myqueueService.loadRoleQueue().subscribe((data: RoleQueue[]) => {
       this.dataSource2.data = data;
     });
   }
