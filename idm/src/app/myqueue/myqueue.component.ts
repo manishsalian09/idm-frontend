@@ -38,4 +38,8 @@ export class MyqueueComponent implements OnInit {
       this.dataSource2.data = data;
     });
   }
+
+  count(): number {
+    return this.dataSource2.data.length;
+  }
 }
