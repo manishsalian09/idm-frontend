@@ -10,7 +10,7 @@ import { RoleQueue } from './myqueue';
   styleUrls: ['./myqueue.component.css']
 })
 export class MyqueueComponent implements OnInit {
-
+  private selection = new SelectionModel<any>(true, []);
   dataSource1: MatTableDataSource<any>;
   dataSource2: MatTableDataSource<RoleQueue>;
 
@@ -41,5 +41,14 @@ export class MyqueueComponent implements OnInit {
 
   count(): number {
     return this.dataSource2.data.length;
+  }
+
+  onApprove(): void {
+    console.log("approve");
+    this.selection.selected.forEach(row => console.log(row));
+  }
+
+  onReject(): void {
+    console.log("reject");
   }
 }

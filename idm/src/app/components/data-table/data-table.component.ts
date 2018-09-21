@@ -9,7 +9,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 export class DataTableComponent implements OnInit, AfterViewInit {
 
-  private selection = new SelectionModel<any>(true, []);
+  @Input("selection") private selection = new SelectionModel<any>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @Input("title") title: string;

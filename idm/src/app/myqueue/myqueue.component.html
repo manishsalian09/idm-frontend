@@ -31,7 +31,10 @@
       pagination="required" 
       approve="required" 
       reject="required"
-      [columns]="roleColumn">
+      [columns]="roleColumn"
+      (approveClick)="onApprove()"
+      (rejectClick)="onReject()"
+      [selection]="selection">
     </app-data-table>
   </mat-expansion-panel>
 </mat-accordion>

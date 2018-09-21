@@ -9,7 +9,7 @@
     </mat-menu>
     <button *ngIf="print==='required'" mat-raised-button>Print</button>
     <button *ngIf="approve==='required'" (click)="onApproveClick()" mat-raised-button>Approve</button>
-    <button *ngIf="reject==='required'" mat-raised-button>Reject</button>
+    <button *ngIf="reject==='required'" (click)="onRejectClick()" mat-raised-button>Reject</button>
   </section>
   <table mat-table [dataSource]="dataSource" matSort class="data-table">
     <ng-container [matColumnDef]="c" *ngFor="let c of columns">
